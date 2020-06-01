@@ -123,8 +123,8 @@ class UsersController extends Controller
         }
         return response([
             'data'=>$data,
-            'message'=>'Sukses',
-            'status'=>200
+            'message'=>$message,
+            'status'=>$status
         ]);
     }
     public function addProfil(Request $request)
