@@ -125,6 +125,7 @@ class UsersController extends Controller
             'data'=>$data,
             'message'=>$message,
             'status'=>$status
+
         ]);
     }
     public function addProfil(Request $request)
