@@ -117,6 +117,7 @@ class UsersController extends Controller
             ]);
             $data=$request->no_hp;
             $message="Sukses";
+            $status=200;
         }else{
             $status=400;
             $message="Nomor OTP Salah";
