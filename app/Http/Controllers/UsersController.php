@@ -132,6 +132,24 @@ class UsersController extends Controller
     }
     public function addProfil(Request $request)
     {
+        $rules = array(
+            'email' => 'required|email',
+            'password' => 'required',
+            'name' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+            'provinsi' => 'required',
+            'kota' => 'required',
+            'kecamatan' => 'required',
+        );
+        $validator = Validator::make( $request->all(), $rules);
+        if ( $validator->fails())
+            {
+                return [
+                    'status' => 404,
+                    'message' => $validator->errors()->first()
+                ];
+            }
         $user_id=User::where('no_hp',$request->no_hp)->first();
         $cekEmail=DB::table('users')->select('*')->where('email',$request->email)->first();
         if(!$cekEmail){

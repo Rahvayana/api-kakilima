@@ -22,7 +22,6 @@ $router->group(['prefix'=>'apps','middleware' => 'auth:sanctum'],function() use 
 });
 $router->group(['prefix'=>'profil'],function() use ($router){
     $router->post('/addfoto','UsersController@addFoto');
-    $router->get('/user','UsersController@profile');
 });
 $router->group(['prefix'=>'register'],function() use ($router){
     $router->post('/sendotp','UsersController@sendOTP');
