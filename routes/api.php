@@ -19,6 +19,9 @@ Route::post('/login','UsersController@login');
 $router->group(['prefix'=>'apps','middleware' => 'auth:sanctum'],function() use ($router){
     $router->post('/addfoto','UsersController@profile');
     $router->get('/user','UsersController@profile');
+    $router->group(['prefix'=>'profil'],function() use ($router){
+        $router->get('/status','UsersController@statusUser');
+    });
 });
 $router->group(['prefix'=>'profil'],function() use ($router){
     $router->post('/addfoto','UsersController@addFoto');

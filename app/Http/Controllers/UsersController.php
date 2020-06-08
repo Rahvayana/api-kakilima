@@ -45,6 +45,17 @@ class UsersController extends Controller
     //register fungsi
     public function sendOTP(Request $request)
     {
+        $rules = array(
+            'no_hp' => 'required',
+        );
+        $validator = Validator::make( $request->all(), $rules);
+        if ( $validator->fails())
+            {
+                return [
+                    'status' => 404,
+                    'message' => $validator->errors()->first()
+                ];
+            }
         $cek=DB::table('users')->where('no_hp',$request->no_hp)->first();
         if(!$cek){ //isEmpty
             $status=200;
@@ -74,6 +85,17 @@ class UsersController extends Controller
 
     public function resendOTP(Request $request)
     {
+        $rules = array(
+            'no_hp' => 'required',
+        );
+        $validator = Validator::make( $request->all(), $rules);
+        if ( $validator->fails())
+            {
+                return [
+                    'status' => 404,
+                    'message' => $validator->errors()->first()
+                ];
+            }
         $cek=DB::table('users')
         ->select('email','password')
         ->where('no_hp',$request->no_hp)->first();
@@ -105,6 +127,17 @@ class UsersController extends Controller
 
     public function cekOTP(Request $request)
     {
+        $rules = array(
+            'no_hp' => 'required',
+        );
+        $validator = Validator::make( $request->all(), $rules);
+        if ( $validator->fails())
+            {
+                return [
+                    'status' => 404,
+                    'message' => $validator->errors()->first()
+                ];
+            }
         $OTP=DB::table('users')->select('otp')->where('no_hp',$request->no_hp)->first();
         if($request->otp==$OTP->otp){
             DB::table('users')->insert([
@@ -181,7 +214,18 @@ class UsersController extends Controller
     {
         dd($request);
     }
+    public function statusUser(Request $request)
+    {
+        $id=$request->user()->id;
+        $data=DB::table('users')->select('status','name','foto')->where('id',$id)->first();
+        $data->foto="https://randomuser.me/api/portraits/men/1.jpg";
+        return response([
+            'data'=>$data,
+            'message'=>'sukses',
+            'status'=>200
+        ]);
 
+    }
     public function profile(Request $request)
     {
         $data['user']=$request->user();
