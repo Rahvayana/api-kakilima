@@ -229,6 +229,7 @@ class UsersController extends Controller
     public function profile(Request $request)
     {
         $data['user']=$request->user();
+        $data['user']->foto="https://randomuser.me/api/portraits/men/1.jpg";
         $data['foto']='www.google.com/jaya.jpg';
         return response([
             'data'=>$data,
