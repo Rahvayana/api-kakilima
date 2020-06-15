@@ -17,15 +17,21 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login','UsersController@login');
 
 $router->group(['prefix'=>'apps','middleware' => 'auth:sanctum'],function() use ($router){
+
     $router->post('/addfoto','UsersController@profile');
     $router->get('/user','UsersController@profile');
+
     $router->group(['prefix'=>'profil'],function() use ($router){
         $router->get('/status','UsersController@statusUser');
     });
+
+    $router->group(['prefix'=>'seller'],function() use ($router){
+        $router->get('/index','SellerController@index');
+        $router->post('/addSeller','SellerController@addSeller');
+    });
+
 });
-$router->group(['prefix'=>'profil'],function() use ($router){
-    $router->post('/addfoto','UsersController@addFoto');
-});
+
 $router->group(['prefix'=>'register'],function() use ($router){
     $router->post('/sendotp','UsersController@sendOTP');
     $router->post('/resendotp','UsersController@resendOTP');
