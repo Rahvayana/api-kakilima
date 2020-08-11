@@ -247,24 +247,24 @@ class UsersController extends Controller
         $maps = array();
         $mapsApi = [
             $maps = [
-                'lat' => '-7.112254',
-                'lng' => '112.408554',
+                'lat' => -7.112254,
+                'lng' => 112.408554,
                 'image' => 'https://timurmedia.com/wp-content/uploads/2020/03/IMG_20200330_150055.jpg',
                 'name' => 'Pedagang Cakwe dan Gorengan',
                 'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet facilisis magna etiam tempor.',
                 'rating' => 5,
             ],
             $maps = [
-                'lat' => '-7.112509',
-                'lng' => '112.408468',
+                'lat' => -7.112509,
+                'lng' => 112.408468,
                 'image' => 'https://www.borneonews.co.id/images/upload/2019/10/16/aHFfCnQO4NyrHxDXhMpG_4kv2cjERvPWyfgEH99GnzQ.jpeg',
                 'name' => 'Pedagang Cireng Bogor',
                 'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A erat nam at lectus urna duis convallis convallis tellus.',
                 'rating' => 3.5,
             ],
             $maps = [
-                'lat' => '-7.113404',
-                'lng' => '112.408404',
+                'lat' => -7.113404,
+                'lng' => 112.408404,
                 'image' => 'https://awsimages.detik.net.id/community/media/visual/2018/10/19/29cb8e57-986f-47fd-bcbb-419dedc9917b.jpeg?w=700&q=90',
                 'name' => 'Kue Tradisional',
                 'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A erat nam at lectus urna duis convallis convallis tellus.',
