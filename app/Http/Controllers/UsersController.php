@@ -233,17 +233,6 @@ class UsersController extends Controller
 
     public function mapsApi()
     {
-        // -7.112254, 112.408554
-        // -7.112509, 112.408468
-        // -7.113404, 112.408404
-        // -7.114814, 112.408048
-        // -7.115569, 112.407736
-        // -7.115277, 112.408322
-        // -7.115306, 112.408690
-        // -7.115357, 112.408861
-        // -7.115016, 112.407145
-        // -7.115016, 112.406914
-        // -7.114984, 112.406689
         $maps = array();
         $mapsApi = [
             $maps = [
@@ -251,7 +240,7 @@ class UsersController extends Controller
                 'lng' => 112.408554,
                 'image' => 'https://timurmedia.com/wp-content/uploads/2020/03/IMG_20200330_150055.jpg',
                 'name' => 'Pedagang Cakwe dan Gorengan',
-                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet facilisis magna etiam tempor.',
+                'deskripsi' => 'Banyak penjual cakwe yang dijumpai dimasyarakat mulai di pinggir jalan hingga di tempat-tempat nongkrong. Penggemar cakwe goreng memang sangat banyak.',
                 'rating' => 5,
             ],
             $maps = [
@@ -259,7 +248,7 @@ class UsersController extends Controller
                 'lng' => 112.408468,
                 'image' => 'https://www.borneonews.co.id/images/upload/2019/10/16/aHFfCnQO4NyrHxDXhMpG_4kv2cjERvPWyfgEH99GnzQ.jpeg',
                 'name' => 'Pedagang Cireng Bogor',
-                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A erat nam at lectus urna duis convallis convallis tellus.',
+                'deskripsi' => 'Deskripsi Cireng Bumbu Rujak, RTC by Delicio PERHATIAN!!! Freezy Fresh kini hadir di 3 lokasi lain (Pilih Toko Terdekat untuk Ongkir Lebih Murah) Jakarta Selatan : www.tokopedia.com/freezyfresh Jakarta Barat : www.tokopedia.com/freezyjakbar Depok : www.tokopedia.com/freezydepok',
                 'rating' => 3.5,
             ],
             $maps = [
@@ -267,6 +256,46 @@ class UsersController extends Controller
                 'lng' => 112.408404,
                 'image' => 'https://awsimages.detik.net.id/community/media/visual/2018/10/19/29cb8e57-986f-47fd-bcbb-419dedc9917b.jpeg?w=700&q=90',
                 'name' => 'Kue Tradisional',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A erat nam at lectus urna duis convallis convallis tellus.',
+                'rating' => 3,
+            ],
+            $maps = [
+                'lat' => -7.114814,
+                'lng' => 112.408048,
+                'image' => 'https://cdn0-production-images-kly.akamaized.net/U-s4KXRyPLrHKheF7zovtIQ4faE=/1231x710/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2793527/original/031112900_1556702766-20190501-Buruh-Aksi-Perayaan-Mayday_-Pedagang-Kaki-Lima-Panen-Rejeki-TEBE-3.jpg',
+                'name' => 'Es Cendol Dawet',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A erat nam at lectus urna duis convallis convallis tellus.',
+                'rating' => 3,
+            ],
+            $maps = [
+                'lat' => -7.115569,
+                'lng' => 112.407736,
+                'image' => 'https://cdn2.tstatic.net/style/foto/bank/images/martabak-manis_20180219_205121.jpg',
+                'name' => 'Terang Bulan 69 Bangke',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A erat nam at lectus urna duis convallis convallis tellus.',
+                'rating' => 4.5,
+            ],
+            $maps = [
+                'lat' => -7.115569,
+                'lng' => 112.408322,
+                'image' => 'https://manaberita.com/v1/uploads/2019/12/images-49.jpg',
+                'name' => 'Pentol HellFire',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A erat nam at lectus urna duis convallis convallis tellus.',
+                'rating' => 5,
+            ],
+            $maps = [
+                'lat' => -7.115306,
+                'lng' => 112.408690,
+                'image' => 'https://lh3.googleusercontent.com/proxy/8g9P2Ktzq5hQgS_SOeuc0s0qluZfyJ2pM94XM13mWCaMiWiWd0Sckoy601EBpx0TiWoy54A9t5zjWbsF9jGAreBx4-H7r-nqqfvIpX_p0SBEWBr3FN867Sgh_X4Af-91kJb3LOPiNesGXDI7yqNjqfiaSCH9h2pZbTbW-3JAqgTo',
+                'name' => 'Mas Bowo On The Way',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A erat nam at lectus urna duis convallis convallis tellus.',
+                'rating' => 3,
+            ],
+            $maps = [
+                'lat' => -7.115357,
+                'lng' => 112.408861,
+                'image' => 'https://cdn.idntimes.com/content-images/community/2019/12/57325334-527542737651046-5177539548100002288-n-3ac503368fe23cde3b71febf4eec8c72_600x400.jpg',
+                'name' => 'Mie Ayam Jakarta',
                 'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A erat nam at lectus urna duis convallis convallis tellus.',
                 'rating' => 3,
             ],
