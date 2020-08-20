@@ -34,6 +34,8 @@ class SellerController extends Controller
                 'latitude' => $request->latitude,
                 'longitude' => $request->longitude,
                 'deskripsi' => $request->deskripsi,
+                'created_at' => date('Y-m-d H:m:s'),
+                'updated_at' => date('Y-m-d H:m:s'),
             ]
         );
         return response([
