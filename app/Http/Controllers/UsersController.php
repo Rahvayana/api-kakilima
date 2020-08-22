@@ -60,7 +60,8 @@ class UsersController extends Controller
             $message = "Sukses";
             $data['otp'] = "55555";
             $data['no_hp'] = $request->no_hp;
-            DB::table('users')->insert([
+            DB::table('users')
+            ->insert([
                 [
                     'no_hp' => $request->no_hp,
                     'otp' => $data['otp'],
@@ -105,7 +106,6 @@ class UsersController extends Controller
                 ->update([
                     'otp' => $data['otp'],
                     'otp_status' => FALSE,
-                    'created_at' => date('Y-m-d H:m:s'),
                     'updated_at' => date('Y-m-d H:m:s')
                 ]);
         } else {
@@ -136,13 +136,12 @@ class UsersController extends Controller
         }
         $OTP = DB::table('users')->select('otp')->where('no_hp', $request->no_hp)->first();
         if ($request->otp == $OTP->otp) {
-            DB::table('users')->insert([
-                [
+            DB::table('users')
+            ->where('no_hp', $request->no_hp)
+            ->update([
                     'status' => TRUE,
                     'otp_status' => TRUE,
-                    'created_at' => date('Y-m-d H:m:s'),
                     'updated_at' => date('Y-m-d H:m:s')
-                ]
             ]);
             $data = $request->no_hp;
             $message = "Sukses";
