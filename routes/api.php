@@ -28,4 +28,4 @@ $router->group(['prefix'=>'register'],function() use ($router){
     $router->post('/addprofil','UsersController@addProfil');
 });
 
-$router->get('/maps','UsersController@mapsApi');
+$router->get('/maps','HomeController@maps');
