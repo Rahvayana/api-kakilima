@@ -18,6 +18,10 @@ $router->group(['prefix'=>'apps','middleware' => 'auth:sanctum'],function() use 
         $router->get('/index','SellerController@index');
         $router->post('/addSeller','SellerController@addSeller');
     });
+    $router->group(['prefix'=>'home'],function() use ($router){
+        $router->get('/rating','HomeController@rating');
+    });
+    
 
 });
 
@@ -27,5 +31,4 @@ $router->group(['prefix'=>'register'],function() use ($router){
     $router->post('/cekotp','UsersController@cekOTP');
     $router->post('/addprofil','UsersController@addProfil');
 });
-
 $router->get('/maps','HomeController@maps');

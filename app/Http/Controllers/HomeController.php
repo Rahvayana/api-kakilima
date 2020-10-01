@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -32,6 +33,26 @@ class HomeController extends Controller
         }
         return response([
             'offices'=>$datamap
+        ]);
+    }
+
+    public function rating(Request $request)
+    {
+        $id=Auth::id();
+        $rating=DB::table('ratings')
+        ->updateOrInsert(
+            ['id_user' => $id,'id_seller' => $request->id_seller],
+            [
+                'rating' => $request->rating,
+                'created_at' => date('Y-m-d H:m:s'),
+                'updated_at' => date('Y-m-d H:m:s'),
+            ]
+        );
+
+        return response()->json([
+            'data'=>$rating,
+            'status'=>200,
+            'message'=>'Success'
         ]);
     }
 }
