@@ -14,11 +14,7 @@ class HomeController extends Controller
     {
         $data=Post::all();
         
-        return response([
-            'data'=>$data,
-            'message'=>'sukses',
-            'status'=>200
-        ]);
+        return response($data);
     }
 
     public function maps()
