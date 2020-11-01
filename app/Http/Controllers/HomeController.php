@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        
+        $data['posts']=Post::all();
+        return response([
+            'data'=>$data,
+            'message'=>'sukses',
+            'status'=>200
+        ]);
     }
 
     public function maps()

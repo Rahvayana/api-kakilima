@@ -15,6 +15,9 @@ class SellerController extends Controller
         ->leftJoin('users','users.id','sellers.id_user')
         ->where('sellers.id_user',$id)
         ->first();
+        $data['favorite']=DB::table('favorites')->where('id_seller',$id)->get()->count();
+        $data['post']=DB::table('posts')->where('id_seller',$id)->get()->count();
+        // dd($data);
 
         return response([
             'data'=>$data,
