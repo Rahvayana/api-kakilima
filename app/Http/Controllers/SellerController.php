@@ -25,6 +25,7 @@ class SellerController extends Controller
             'status'=>200
         ]);
     }
+    
     public function addSeller(Request $request)
     {
         $id=$request->user()->id;

@@ -12,7 +12,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $data['posts']=Post::all();
+        $data=Post::all();
+        
         return response([
             'data'=>$data,
             'message'=>'sukses',
