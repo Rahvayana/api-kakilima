@@ -16,10 +16,11 @@ $router->group(['prefix'=>'apps','middleware' => 'auth:sanctum'],function() use 
 
     $router->group(['prefix'=>'seller'],function() use ($router){
         $router->get('/index','SellerController@index');
+        $router->post('/status','SellerController@status');
         $router->post('/addSeller','SellerController@addSeller');
     });
     $router->group(['prefix'=>'home'],function() use ($router){
-        $router->get('/rating','HomeController@rating');
+        $router->post('/rating','HomeController@rating');
     });
     
 

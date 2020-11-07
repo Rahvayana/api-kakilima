@@ -25,6 +25,11 @@ class SellerController extends Controller
             'status'=>200
         ]);
     }
+
+    public function status(Request $request)
+    {
+        dd($request);
+    }
     
     public function addSeller(Request $request)
     {

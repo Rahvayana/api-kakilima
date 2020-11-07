@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         $maps=DB::table('sellers')
                 ->select('sellers.id','sellers.nama_seller as name','sellers.latitude as lat','sellers.longitude as lng','sellers.deskripsi','users.foto as image')
-                ->leftJoin('users','users.id','sellers.id_user')->get();
+                ->leftJoin('users','users.id','sellers.id_user')->where('sellers.status',1)->get();
         $datamap=array();
         foreach($maps as $map){
             $rating=Rating::where('id_seller',$map->id)->avg('rating');
@@ -47,6 +47,7 @@ class HomeController extends Controller
             ['id_user' => $id,'id_seller' => $request->id_seller],
             [
                 'rating' => $request->rating,
+                'review' => $request->review,
                 'created_at' => date('Y-m-d H:m:s'),
                 'updated_at' => date('Y-m-d H:m:s'),
             ]
