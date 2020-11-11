@@ -26,6 +26,7 @@ class HomeController extends Controller
         foreach($maps as $map){
             $rating=Rating::where('id_seller',$map->id)->avg('rating');
             $datamap[]=[
+                'id'=>$map->id,
                 'name'=>$map->name,
                 'lat'=>$map->lat,
                 'lng'=>$map->lng,
@@ -47,6 +48,25 @@ class HomeController extends Controller
             ['id_user' => $id,'id_seller' => $request->id_seller],
             [
                 'rating' => $request->rating,
+                'created_at' => date('Y-m-d H:m:s'),
+                'updated_at' => date('Y-m-d H:m:s'),
+            ]
+        );
+
+        return response()->json([
+            'data'=>$rating,
+            'status'=>200,
+            'message'=>'Success'
+        ]);
+    }
+
+    public function review(Request $request)
+    {
+        $id=Auth::id();
+        $rating=DB::table('ratings')
+        ->updateOrInsert(
+            ['id_user' => $id,'id_seller' => $request->id_seller],
+            [
                 'review' => $request->review,
                 'created_at' => date('Y-m-d H:m:s'),
                 'updated_at' => date('Y-m-d H:m:s'),
