@@ -19,12 +19,15 @@ class HomeController extends Controller
 
     public function maps()
     {
+        $id=Auth::id();
         $maps=DB::table('sellers')
                 ->select('sellers.id','sellers.nama_seller as name','sellers.latitude as lat','sellers.longitude as lng','sellers.deskripsi','users.foto as image')
                 ->leftJoin('users','users.id','sellers.id_user')->where('sellers.status',1)->get();
         $datamap=array();
         foreach($maps as $map){
             $rating=Rating::where('id_seller',$map->id)->avg('rating');
+            $my_rating=Rating::select('rating')->where('id_user',$id)->where('id_seller',$map->id)->pluck('rating')->first();
+            $my_review=Rating::select('review')->where('id_user',$id)->where('id_seller',$map->id)->pluck('review')->first();
             $datamap[]=[
                 'id'=>$map->id,
                 'name'=>$map->name,
@@ -33,6 +36,8 @@ class HomeController extends Controller
                 'deskripsi'=>$map->deskripsi,
                 'image'=>$map->image,
                 'rating'=>$rating,
+                'my_rating'=>$my_rating,
+                'my_review'=>$my_review,
             ];
         }
         return response([
