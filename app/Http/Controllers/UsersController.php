@@ -212,6 +212,11 @@ class UsersController extends Controller
         $id = $request->user()->id;
         $data = DB::table('users')->select('status', 'name', 'foto')->where('id', $id)->first();
         $data->foto = "https://randomuser.me/api/portraits/men/1.jpg";
+        if(!$data->status||$data->status==0){
+            $data->status='Pembeli';
+        }else{
+            $data->status='Penjual';
+        }
         return response([
             'data' => $data,
             'message' => 'sukses',
