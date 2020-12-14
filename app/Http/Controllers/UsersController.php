@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Seller;
 use App\User;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
@@ -213,8 +214,9 @@ class UsersController extends Controller
         $data = DB::table('users')->select('sellers.status', 'users.name', 'users.foto')
         ->leftJoin('sellers','sellers.id_user','users.id')
         ->where('users.id', $id)->first();
+        $seller=Seller::where('id_user',$id)->first();
         $data->foto = "https://randomuser.me/api/portraits/men/1.jpg";
-        if($data->status==null||$data->status==0){
+        if(!$seller){
             $data->status='Pembeli';
         }else{
             $data->status='Penjual';
