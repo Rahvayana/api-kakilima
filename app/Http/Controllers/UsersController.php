@@ -210,8 +210,8 @@ class UsersController extends Controller
     public function statusUser(Request $request)
     {
         $id = $request->user()->id;
-        $data = DB::table('sellers')->select('sellers.status', 'users.name', 'users.foto')
-        ->leftJoin('users','users.id','sellers.id_user')
+        $data = DB::table('users')->select('sellers.status', 'users.name', 'users.foto')
+        ->leftJoin('sellers','sellers.id_user','users.id')
         ->where('users.id', $id)->first();
         $data->foto = "https://randomuser.me/api/portraits/men/1.jpg";
         if($data->status==null||$data->status==0){
