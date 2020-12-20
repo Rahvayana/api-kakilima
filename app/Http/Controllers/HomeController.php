@@ -26,20 +26,27 @@ class HomeController extends Controller
             $idSeller=Seller::where('id_user',$id)->first();
 
             $file = $request->file('image');
-            $namaFile=date('YmdHis').$file->getClientOriginalName();
-            $tujuan_upload = 'post';
-            $file->move($tujuan_upload,$namaFile);
+            if($request->file('image')){
+                $namaFile=date('YmdHis').$file->getClientOriginalName();
+                $tujuan_upload = 'post';
+                $file->move($tujuan_upload,$namaFile);
 
-            $post=new Post();
-            $post->judul=$request->judul;
-            $post->deskripsi=$request->deskripsi;
-            $post->id_seller=$idSeller->id;
-            $post->foto='https://api-kakilima.herokuapp.com/post/'.$namaFile;
-            $post->save();
-            return response()->json([
-                'message'=>'Sukses Tambah Post',
-                'status'=>200
-            ]);
+                $post=new Post();
+                $post->judul=$request->judul;
+                $post->deskripsi=$request->deskripsi;
+                $post->id_seller=$idSeller->id;
+                $post->foto='https://api-kakilima.herokuapp.com/post/'.$namaFile;
+                $post->save();
+                return response()->json([
+                    'message'=>'Sukses Tambah Post',
+                    'status'=>200
+                ]);
+            }else{
+                return response()->json([
+                    'message'=>'Image Not Found',
+                    'status'=>404
+                ]);
+            }
        }catch(Exception $e){
         return response()->json([
             'message'=>$e->getMessage(),
