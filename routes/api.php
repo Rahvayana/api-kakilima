@@ -22,6 +22,7 @@ $router->group(['prefix'=>'apps','middleware' => 'auth:sanctum'],function() use 
     $router->group(['prefix'=>'home'],function() use ($router){
         $router->get('/maps','HomeController@maps');
         $router->get('/home','HomeController@index');
+        $router->post('/addPost','HomeController@addPost');
         $router->post('/rating','HomeController@rating');
         $router->post('/review','HomeController@review');
     });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Rating;
+use App\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,28 @@ class HomeController extends Controller
         $data=Post::all();
         
         return response($data);
+    }
+
+    public function addPost(Request $request)
+    {
+        $id=Auth::id();
+        $idSeller=Seller::where('id_user',$id)->first();
+
+        $file = $request->file('image');
+        $namaFile=date('YmdHis').$file->getClientOriginalName();
+        $tujuan_upload = 'post';
+        $file->move($tujuan_upload,$namaFile);
+
+        $post=new Post();
+        $post->judul=$request->judul;
+        $post->deskripsi=$request->deskripsi;
+        $post->id_seller=$idSeller->id;
+        $post->foto='https://api-kakilima.herokuapp.com/post/'.$namaFile;
+        $post->save();
+        return response()->json([
+            'message'=>'Sukses Tambah Post',
+            'status'=>200
+        ]);
     }
 
     public function maps()
