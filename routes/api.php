@@ -12,6 +12,8 @@ $router->group(['prefix'=>'apps','middleware' => 'auth:sanctum'],function() use 
 
     $router->group(['prefix'=>'profil'],function() use ($router){
         $router->get('/status','UsersController@statusUser');
+        $router->get('/myfavorite','UsersController@myfavorite');
+        $router->post('/addfavorite','UsersController@addfavorite');
     });
 
     $router->group(['prefix'=>'seller'],function() use ($router){

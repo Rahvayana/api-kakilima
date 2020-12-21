@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Favorite;
 use App\Seller;
 use App\User;
 use Dotenv\Exception\ValidationException;
@@ -237,6 +238,33 @@ class UsersController extends Controller
             'message' => 'Sukses',
             'status' => 200
         ]);
+    }
+
+    public function myfavorite()
+    {
+        $favorites=DB::table('favorites')->select('sellers.nama_seller')
+        ->leftJoin('sellers','sellers.id','favorites.id_seller')
+        ->where('favorites.id_user',Auth::id())->get();
+        return response()->json([
+            'data'=>$favorites,
+            'message'=>'sukses',
+            'status'=>200,
+        ]);
+    }
+    public function addfavorite(Request $request)
+    {
+        DB::table('favorites')
+        ->updateOrInsert(
+            ['id_user' => Auth::id(),'id_seller'=>$request->id_seller],
+            [
+                'created_at' => date('Y-m-d H:m:s'),
+                'updated_at' => date('Y-m-d H:m:s'),
+                ]
+            );
+            return response()->json([
+                'message'=>'sukses',
+                'status'=>200,
+            ]);
     }
 
     public function mapsApi()
