@@ -245,11 +245,7 @@ class UsersController extends Controller
         $favorites=DB::table('favorites')->select('sellers.nama_seller')
         ->leftJoin('sellers','sellers.id','favorites.id_seller')
         ->where('favorites.id_user',Auth::id())->get();
-        return response()->json([
-            'data'=>$favorites,
-            'message'=>'sukses',
-            'status'=>200,
-        ]);
+        return response()->json($favorites);
     }
     public function addfavorite(Request $request)
     {
