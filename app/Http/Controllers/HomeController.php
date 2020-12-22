@@ -9,6 +9,9 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Image;
+
 
 class HomeController extends Controller
 {
@@ -28,14 +31,15 @@ class HomeController extends Controller
             $file = $request->file('image');
             if($request->file('image')){
                 $namaFile=date('YmdHis').$file->getClientOriginalName();
-                $tujuan_upload = 'post';
-                $file->move($tujuan_upload,$namaFile);
+                $normal = Image::make($file)->resize(512,null)->encode($file->extension());
+                Storage::disk('s3')->put('/images/'.$namaFile, (string)$normal, 'public');
+
 
                 $post=new Post();
                 $post->judul=$request->judul;
                 $post->deskripsi=$request->deskripsi;
                 $post->id_seller=$idSeller->id;
-                $post->foto='https://api-kakilima.herokuapp.com/post/'.$namaFile;
+                $post->foto='https://lizartku.s3.us-east-2.amazonaws.com/images/'.$namaFile;
                 $post->save();
                 return response()->json([
                     'message'=>'Sukses Tambah Post',
