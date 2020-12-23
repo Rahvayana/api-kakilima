@@ -77,7 +77,7 @@ class HomeController extends Controller
                 'lng'=>$map->lng,
                 'deskripsi'=>$map->deskripsi,
                 'image'=>$map->image,
-                'rating'=>number_format($rating,1),
+                'rating'=>ceil($rating),
                 'my_rating'=>$my_rating,
                 'my_review'=>$my_review,
             ];
