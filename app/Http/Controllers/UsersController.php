@@ -201,6 +201,7 @@ class UsersController extends Controller
         }
 
         return response([
+            'data' => $users,
             'message' => $message,
             'status' => $status
         ]);
