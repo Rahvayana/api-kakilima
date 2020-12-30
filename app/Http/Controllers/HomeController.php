@@ -32,7 +32,7 @@ class HomeController extends Controller
             $file = $request->file('image');
             if($request->file('image')){
                 $namaFile=date('YmdHis').$file->getClientOriginalName();
-                $normal = Image::make($file)->resize(512,null)->encode($file->extension());
+                $normal = Image::make($file)->resize(512,512)->encode($file->extension());
                 Storage::disk('s3')->put('/images/'.$namaFile, (string)$normal, 'public');
 
 
