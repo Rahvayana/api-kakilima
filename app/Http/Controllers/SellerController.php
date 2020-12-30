@@ -60,4 +60,14 @@ class SellerController extends Controller
             'status'=>200
         ]);
     }
+
+    public function post(Request $request)
+    {
+        $id=$request->user()->id;
+        $seller=Seller::where('id_user',$id)->first();
+        // dd($seller);
+        $post=DB::table('posts')->where('id_seller',$seller->id)->get();
+        return response($post);
+
+    }
 }
