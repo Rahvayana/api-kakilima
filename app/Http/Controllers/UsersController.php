@@ -41,6 +41,7 @@ class UsersController extends Controller
 
         return response([
             'token' => $user->createToken('token')->plainTextToken,
+            'data'=>$user,
             'status' => '200',
             'message' => 'Sukses'
         ]);
