@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -182,6 +184,16 @@ class UsersController extends Controller
         $user_id = User::where('no_hp', $request->no_hp)->first();
         $cekEmail = DB::table('users')->select('*')->where('email', $request->email)->first();
         if (!$cekEmail) {
+            $file = $request->file('foto');
+            if($request->file('foto')){
+                $namaFile=date('YmdHis').$file->getClientOriginalName();
+                $normal = Image::make($file)->encode($file->extension());
+                Storage::disk('s3')->put('/images/'.$namaFile, (string)$normal, 'public');
+                $foto='https://lizartku.s3.us-east-2.amazonaws.com/images/'.$namaFile;
+            }else{
+                $foto='https://sman93jkt.sch.id/wp-content/uploads/2018/01/765-default-avatar.png';
+            }
+
             $users = new User();
             $users = User::find($user_id->id);
             $users->name = $request->name;
@@ -190,6 +202,7 @@ class UsersController extends Controller
             $users->alamat = $request->alamat;
             $users->provinsi = $request->provinsi;
             $users->kota = $request->kota;
+            $users->foto = $foto;
             $users->kecamatan = $request->kecamatan;
             $users->password = bcrypt($request->password);
             $users->save();
