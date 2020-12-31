@@ -220,6 +220,56 @@ class UsersController extends Controller
             'status' => $status
         ]);
     }
+
+    public function updateProfile(Request $request)
+    {
+        $rules = array(
+            'name' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+            'provinsi' => 'required',
+            'kota' => 'required',
+            'kecamatan' => 'required',
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return [
+                'status' => 404,
+                'message' => $validator->errors()->first()
+            ];
+        }
+        $user_id = User::where('no_hp', $request->no_hp)->first();
+        $cekEmail = DB::table('users')->select('*')->where('email', $request->email)->first();
+            $file = $request->file('foto');
+            if($request->file('foto')){
+                $namaFile=date('YmdHis').$file->getClientOriginalName();
+                $normal = Image::make($file)->encode($file->extension());
+                Storage::disk('s3')->put('/images/'.$namaFile, (string)$normal, 'public');
+                $foto='https://lizartku.s3.us-east-2.amazonaws.com/images/'.$namaFile;
+            }
+
+            $users = new User();
+            $users = User::find($user_id->id);
+            $users->name = $request->name;
+            $users->tgl_lahir = $request->tgl_lahir;
+            $users->alamat = $request->alamat;
+            $users->provinsi = $request->provinsi;
+            $users->kota = $request->kota;
+            if($request->file('foto')){
+                $users->foto = $foto;
+            }
+            $users->kecamatan = $request->kecamatan;
+            $users->save();
+            $message = 'Sukses';
+            $status = 200;
+
+        return response([
+            'data' => $users,
+            'message' => $message,
+            'status' => $status
+        ]);
+    }
+
     public function addFoto(Request $request)
     {
         dd($request);
@@ -246,7 +296,6 @@ class UsersController extends Controller
     public function profile(Request $request)
     {
         $data['user'] = $request->user();
-        $data['user']->foto = "https://randomuser.me/api/portraits/men/1.jpg";
         $data['foto'] = 'www.google.com/jaya.jpg';
         return response([
             'data' => $data,

@@ -38,4 +38,5 @@ $router->group(['prefix'=>'register'],function() use ($router){
     $router->post('/resendotp','UsersController@resendOTP');
     $router->post('/cekotp','UsersController@cekOTP');
     $router->post('/addprofil','UsersController@addProfil');
+    $router->post('/updateprofil','UsersController@updateProfile');
 });
