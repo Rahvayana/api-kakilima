@@ -281,7 +281,6 @@ class UsersController extends Controller
         ->leftJoin('sellers','sellers.id_user','users.id')
         ->where('users.id', $id)->first();
         $seller=Seller::where('id_user',$id)->first();
-        $data->foto = "https://randomuser.me/api/portraits/men/1.jpg";
         if(!$seller){
             $data->status='Pembeli';
         }else{
