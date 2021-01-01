@@ -30,9 +30,14 @@ class SellerController extends Controller
 
     public function status(Request $request)
     {
-        // dd($request);
+        
         $id=$request->user()->id;
-        DB::table('sellers')->where('id_user', $id)->update(['status' => $request->status]);
+        DB::table('sellers')->where('id_user', $id)->update([
+            'status' => $request->status,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+
+        ]);
         return response([
             'message'=>'sukses',
             'status'=>200
