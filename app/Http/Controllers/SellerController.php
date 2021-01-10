@@ -34,8 +34,8 @@ class SellerController extends Controller
         $id=$request->user()->id;
         DB::table('sellers')->where('id_user', $id)->update([
             'status' => $request->status,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
+            // 'latitude' => $request->latitude,
+            // 'longitude' => $request->longitude,
 
         ]);
         return response([
