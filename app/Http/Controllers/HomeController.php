@@ -18,7 +18,9 @@ class HomeController extends Controller
     public function index()
     {
         $data=DB::table('posts')->select('posts.judul','posts.deskripsi','posts.foto','sellers.latitude','sellers.longitude')
-        ->leftJoin('sellers','sellers.id','posts.id_seller')->get();
+        ->leftJoin('sellers','sellers.id','posts.id_seller')
+        ->orderBy('posts.created_at', 'desc')
+        ->get();
         
         return response($data);
     }
